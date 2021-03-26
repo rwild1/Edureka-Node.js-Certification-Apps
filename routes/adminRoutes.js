@@ -11,27 +11,6 @@ var corsOptions={
   optionsSuccessStatus:200
 }
 
-router.route('/admin').get((_, response) => {
-  //using mongoose model 
-//   user.find((err,data)=>{
-//     if(err)
-//       throw err
-//     else
-//     response.json(data)  
-// })
-
-});
-
-router.route('/admin').post(json(),cors(corsOptions), (request, response) => {
-  //using mongoose model 
-//   user.create(request.body,(err,data)=>{
-//     if(err)
-//      throw err
-//     else
-//     response.send(data) 
-//    })
-});
-
 // get request for news form
 router.get('/newsForm', (req, res) => {
   const token = localStorage.getItem('authtoken')
