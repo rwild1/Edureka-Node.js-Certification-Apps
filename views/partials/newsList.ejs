@@ -1,0 +1,48 @@
+<!-- login success -->
+<div class="alert alert-success" role="alert">
+    <span>User Name: <%= user.name %>,</span>
+    <span>Email: <%= user.email %></span>
+</div>
+<!-- news list -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-body">
+                <center>
+                    <h3>News List</h3>
+                </center>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped" id="myTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Published At</th>
+                                <th>Edit/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>title</td>
+                                <td>description</td>
+                                <td>publishedAt</td>
+                                <td>
+                                    <button>Edit</button>
+                                    <button>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- the modal view -->
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
