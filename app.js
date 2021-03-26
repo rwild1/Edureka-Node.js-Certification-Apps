@@ -20,6 +20,16 @@ connection.once('open',()=>{
 app.use('/',userRoutes)
 app.use('/admin',adminRoutes)
 
+app.set('view engine','ejs')
+
+app.get('/login',(request,response)=>{
+    response.render('admin')
+})
+
+app.get('/register',(request,response)=>{
+    response.render('register')
+})
+
 
 //start express app
 app.listen(port,()=>{
