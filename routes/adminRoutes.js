@@ -100,4 +100,4 @@ router.post('/addNews', (req, res) => {
   });
 });
 
-export default adminRouter;
+export default router;
