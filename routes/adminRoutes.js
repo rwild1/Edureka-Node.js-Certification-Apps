@@ -78,6 +78,12 @@ router.route('/login').post(json(),urlencoded({extended:false}),cors(corsOptions
     
 });
 
+router.route('/logout').get((request, response) => {
+  let localStorage= new LocalStorage('./Scratch')
+  localStorage.removeItem('authToken')
+  response.render('admin')
+})
+
 router.route('/verified').get((request, response) => {
   let localStorage= new LocalStorage('./Scratch')
   let token=localStorage.getItem('authToken')
@@ -132,10 +138,54 @@ router.route('/getNews').get(json(),urlencoded({extended:false}),cors(corsOption
       news.find({}, (err, data) => {
         if (err)
           return response.status(500).send('there was a problem listing news')
+        console.log(data[0])
         response.render('partials/newsList', {user,data})
       })
     })
   })
 });
+
+router.route('/openUpdateForm').post(json(),urlencoded({extended:false}), cors(corsOptions), (request, response) => {
+
+  const id = request.body.id
+  const title = request.body.title
+  const description = request.body.description
+  const url = request.body.url
+  const urlToImage = request.body.urlToImage
+  const publishedAt = request.body.publishedAt
+  console.log(url, urlToImage)
+  var news = [{id, title, description, url, urlToImage, publishedAt}]
+  console.log("updateNews: ", news)
+  // news.findByIdAndUpdate({_id: id})
+  response.render('partials/updateNews', {news})
+})
+
+router.route('/updateNews').post(json(),urlencoded({extended:false}), cors(corsOptions), (request, response) => {
+  const id = request.body.id
+  //var news = [{id, title, description, url, urlToImage, publishedAt}]
+  console.log("updateNews: ", news)
+  news.findByIdAndUpdate(id, {
+    $set:{
+      title: request.body.title,
+      description: request.body.description,
+      url: request.body.url,
+      urlToImage: request.body.urlToImage,
+      publishedAt: request.body.publishedAt
+    }
+  }, (err, result) => {
+    if (err)
+      throw err
+    response.redirect('/admin/getNews')
+  })
+})
+
+router.route('/deleteNews').post(json(),urlencoded({extended:false}), cors(corsOptions), (request, response) => {
+  const id = request.body.id
+  news.findByIdAndDelete(id, (err, result) => {
+    if (err)
+      throw err
+    response.redirect('/admin/getNews')
+  })
+})
 
 export default router;
