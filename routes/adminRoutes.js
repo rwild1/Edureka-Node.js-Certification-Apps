@@ -31,4 +31,4 @@ router.route('/admin').post(json(),cors(corsOptions), (request, response) => {
 //    })
 });
 
-export default adminRouter;
+export default router;
