@@ -19,8 +19,23 @@ connection.once('open',()=>{
 //app configurations
 app.use('/',userRoutes)
 app.use('/admin',adminRoutes)
-
 app.set('view engine','ejs')
+app.use('/public', express.static('public'));
+
+// Tanvir UI part
+app.get('/',(request,response)=>{
+    response.render('index')
+})
+
+app.get('/contactUs',(request,response)=>{
+    response.render('contactUs')
+})
+app.get('/sports',(request,response)=>{
+    response.render('sports')
+})
+app.get('/aboutUs',(request,response)=>{
+    response.render('aboutUs')
+})
 
 app.get('/login',(request,response)=>{
     response.render('admin')
