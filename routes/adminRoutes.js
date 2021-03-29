@@ -1,6 +1,7 @@
 import { Router, json ,urlencoded} from 'express';
 import cors from 'cors'
 import user from '../model/user'
+import news from '../model/newsModel'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import config from '../config'
@@ -96,6 +97,45 @@ router.route('/verified').get((request, response) => {
       
    })
   })  
+});
+
+// post request to add news into db
+router.route('/addNews').post(json(),urlencoded({extended:false}),cors(corsOptions), (request, response) => {
+  news.create ({
+    title: request.body.title,
+    description: request.body.description,
+    url: request.body.url,
+    urlToImage: request.body.urlToImage,
+    publishedAt: request.body.publishedAt,
+    insertTime: Date.now()
+  }, (err, data) => {
+    if (err)
+      return response.status(500).send('there was a problem adding news')
+    response.redirect('/admin/getNews')
+  })
+});
+
+// get request to list existing news
+router.route('/getNews').get(json(),urlencoded({extended:false}),cors(corsOptions), (request, response) => {
+  let localStorage= new LocalStorage('./Scratch')
+  let token=localStorage.getItem('authToken')
+  if(!token)
+    return response.redirect('/')
+  jwt.verify(token,config.secret,(err,decoded)=>{
+    if(err)
+      response.redirect('/')
+    user.findById(decoded.id,{password:0},(err,user)=>{
+      if(err)
+        response.redirect('/')
+      if(!user)
+        response.redirect('/')
+      news.find({}, (err, data) => {
+        if (err)
+          return response.status(500).send('there was a problem listing news')
+        response.render('partials/newsList', {user,data})
+      })
+    })
+  })
 });
 
 export default router;
