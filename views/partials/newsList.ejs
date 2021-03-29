@@ -4,6 +4,20 @@
     <%- include ('./head') %>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 50%; margin-left: auto; margin-right: auto;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/admin/verified">News Form<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="/admin/getNews">News List</a>
+            <a class="nav-item nav-link" href="/admin/logout">Logout</a>
+          </div>
+        </div>
+      </nav>
+      
     <!-- login success -->
     <div class="alert alert-success" role="alert">
       <span>User Name: <%= user.name %>,</span>
@@ -36,12 +50,23 @@
                                         <td><%= data[i].publishedAt %></td>
                                         <td>
                                             <!-- id is used by edit/delete scripts -->
-                                            <button data-target="#myModal" id="<%=data[i]._id%>" type="button" class="update btn btn-dark" data-toggle="modal">
-                                                Edit
-                                            </button>
-                                            <button type="button" class="delete btn btn-info" id="<%=data[i]._id%>">
-                                                Delete
-                                            </button>
+                                            <form action="/admin/openUpdateForm" method="POST">
+                                                <input type="hidden" value="<%=data[i]._id%>" name="id">
+                                                <input type="hidden" value="<%=data[i].title%>" name="title">
+                                                <input type="hidden" value="<%=data[i].description%>" name="description">
+                                                <input type="hidden" value="<%=data[i].url%>" name="url">
+                                                <input type="hidden" value="<%=data[i].urlToImage%>" name="urlToImage">
+                                                <input type="hidden" value="<%=data[i].publishedAt%>" name="publishedAt">
+                                                <button type="submit" class="update btn btn-dark">
+                                                    Edit
+                                                </button>
+                                            </form>
+                                            <form action="/admin/deleteNews" method="POST">
+                                                <input type="hidden" value="<%=data[i]._id%>" name="id">
+                                                <button type="submit" class="delete btn btn-info">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <% } %>
