@@ -7,7 +7,8 @@ var newsSchema= mongoose.Schema({
     url:{type:String},
     urlToImage:{type:String},
     publishedAt:{type:Date},
-    insertTime:{type:Date}
+    insertTime:{type:Date},
+    category: {type: String}
 },
 {
     collection:"news"

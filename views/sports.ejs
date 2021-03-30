@@ -19,19 +19,26 @@
           <div class="container" data-aos="fade-up">
     
             <div class="row">
+
+              <% for(var i=0; i < newsData.length; i++) { 
+                if(newsData[i].category == 'sports'){
+                %>
               <div class="col-md-6 d-flex align-items-stretch">
                 <div class="card">
                   <div class="card-img">
-                    <img src="https://play-lh.googleusercontent.com/QSVPAuwnHjbg-gm1RsDRev9Fej49gVpbOOznteUw9AtQc8_e1rSLH4GmiQcxFwT5cg" alt="...">
+                    <img src="<%=newsData[i].urlToImage%>" alt="...">
                   </div>
                   <div class="card-body">
-                    <h5 class="card-title"><a href="">Introduction to webdesign</a></h5>
-                    <p class="fst-italic text-center">Sunday, September 26th at 7:00 pm</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+                    <h5 class="card-title"><a href=""><%=newsData[i].title%></a></h5>
+                    <p class="fst-italic text-center"><%=newsData[i].publishedAt%></p>
+                    <p class="card-text"><%=newsData[i].description%></p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 d-flex align-items-stretch">
+
+              <%} } %>
+
+              <!-- <div class="col-md-6 d-flex align-items-stretch">
                 <div class="card">
                   <div class="card-img">
                     <img src="https://static.www.nfl.com/image/private/t_editorial_landscape_8_desktop_mobile/f_auto/league/rhol4rvsbwvbcf5vtwmn.jpg" alt="...">
@@ -66,7 +73,7 @@
                     <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
 
             </div>

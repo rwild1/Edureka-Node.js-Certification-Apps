@@ -44,7 +44,9 @@ user.create({
    //response.status(200).send({auth:true,token:token})
   // let msg=encodeURIComponent('successfully registered')
     //response.send('successfully registered!!')
-    response.render('partials/registerSuccess')
+    // response.render('partials/registerSuccess')
+    return response.write("<script language='javascript'>window.alert('Registration was Successful!');window.location='loginPage';</script>");
+
   })
 });
 
@@ -65,7 +67,9 @@ router.route('/login').post(json(),urlencoded({extended:false}),cors(corsOptions
     else{
             const passIsValid=bcrypt.compareSync(request.body.password,user.password)
             if(!passIsValid)
-              return response.status(401).send({auth:false,token:null})
+              // return response.status(401).send({auth:false,token:null})
+              return response.write("<script language='javascript'>window.alert('Password is Incorrect');window.location='loginPage';</script>");
+
             let token = jwt.sign({id:user.id},config.secret,{expiresIn:86400})  
             //return response.status(200).send({auth:true,token:token})
              //save the token in localstorage:
@@ -78,10 +82,16 @@ router.route('/login').post(json(),urlencoded({extended:false}),cors(corsOptions
     
 });
 
+router.route('/loginPage').get((request, response) => {
+  response.render('admin')
+})
+
+
 router.route('/logout').get((request, response) => {
   let localStorage= new LocalStorage('./Scratch')
   localStorage.removeItem('authToken')
-  response.render('admin')
+  // response.render('admin')
+  response.redirect('/')
 })
 
 router.route('/verified').get((request, response) => {
@@ -113,7 +123,8 @@ router.route('/addNews').post(json(),urlencoded({extended:false}),cors(corsOptio
     url: request.body.url,
     urlToImage: request.body.urlToImage,
     publishedAt: request.body.publishedAt,
-    insertTime: Date.now()
+    insertTime: Date.now(),
+    category: request.body.category
   }, (err, data) => {
     if (err)
       return response.status(500).send('there was a problem adding news')
@@ -153,6 +164,7 @@ router.route('/openUpdateForm').post(json(),urlencoded({extended:false}), cors(c
   const url = request.body.url
   const urlToImage = request.body.urlToImage
   const publishedAt = request.body.publishedAt
+  const category= request.body.category
   console.log(url, urlToImage)
   var news = [{id, title, description, url, urlToImage, publishedAt}]
   console.log("updateNews: ", news)
@@ -170,7 +182,9 @@ router.route('/updateNews').post(json(),urlencoded({extended:false}), cors(corsO
       description: request.body.description,
       url: request.body.url,
       urlToImage: request.body.urlToImage,
-      publishedAt: request.body.publishedAt
+      publishedAt: request.body.publishedAt,
+      category: request.body.category
+      
     }
   }, (err, result) => {
     if (err)
@@ -187,5 +201,12 @@ router.route('/deleteNews').post(json(),urlencoded({extended:false}), cors(corsO
     response.redirect('/admin/getNews')
   })
 })
+
+
+router.route('/contactUsPage').get((request, response) => {
+  response.render('contactUs')
+})
+
+
 
 export default router;
