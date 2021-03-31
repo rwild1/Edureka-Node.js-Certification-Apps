@@ -1,0 +1,210 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		
+		<title>Compass Starter by Ariona, Rian</title>
+
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+		<!-- Loading main css file -->
+		<style>
+            .forecast-container {
+  width: 100%;
+  background: #67c572;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-top: -120px;
+  margin-bottom: 50px; }
+  .forecast-container .forecast {
+    display: table-cell;
+    vertical-align: top; }
+    .forecast-container .forecast:nth-child(even) {
+      background-color: #3cbb4b; }
+    @media screen and (max-width: 990px) {
+      .forecast-container .forecast {
+        display: block;
+        width: 16.6667%;
+        float: left; } }
+    .forecast-container .forecast.today {
+      width: 420px; }
+      .forecast-container .forecast.today .forecast-header {
+        *zoom: 1; }
+        .forecast-container .forecast.today .forecast-header:after {
+          content: " ";
+          clear: both;
+          display: block;
+          overflow: hidden;
+          height: 0; }
+        .forecast-container .forecast.today .forecast-header .day {
+          float: left; }
+        .forecast-container .forecast.today .forecast-header .date {
+          float: right; }
+      .forecast-container .forecast.today .forecast-content {
+        text-align: left;
+        padding-top: 30px;
+        padding-bottom: 30px; }
+      .forecast-container .forecast.today .location {
+        font-size: 18px;
+        font-size: 1.2857142857em;
+        font-weight: 400; }
+      .forecast-container .forecast.today .degree .num, .forecast-container .forecast.today .degree .forecast-icon {
+        display: inline-block;
+        vertical-align: middle; }
+      .forecast-container .forecast.today .degree .num {
+        font-size: 90px;
+        font-size: 6.4285714286rem;
+        margin-right: 30px; }
+      .forecast-container .forecast.today span {
+        margin-right: 20px; }
+        .forecast-container .forecast.today span img {
+          margin-right: 5px;
+          vertical-align: middle; }
+      @media screen and (max-width: 990px) {
+        .forecast-container .forecast.today {
+          display: block;
+          width: 100%; } }
+    .forecast-container .forecast .forecast-header {
+      background: rgba(237, 234, 234, 0.967);
+      padding: 10px;
+      text-align: center;
+      font-weight: 400; }
+    .forecast-container .forecast .forecast-icon {
+      height: 50px; }
+    .forecast-container .forecast .forecast-content {
+      padding: 50px 20px 10px;
+      text-align: center; }
+      .forecast-container .forecast .forecast-content .forecast-icon {
+        margin-bottom: 20px; }
+      .forecast-container .forecast .forecast-content .degree {
+        font-size: 24px;
+        font-size: 1.7142857143em;
+        color: white;
+        font-weight: 700; }
+      .forecast-container .forecast .forecast-content small {
+        font-size: 16px;
+        font-size: 1.1428571429em; }
+        </style>
+		
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+
+	</head>
+
+
+<div class="forecast-table">
+    <div class="container">
+        <div class="forecast-container">
+            <div class="today forecast">
+                <div class="forecast-header">
+                    <div class="day">Today</div>
+                    <div class="date"><%= Date().slice(0,15) %></div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="location"><%= city %></div>
+                    <div class="degree">
+                        <div class="num"><%= temp %><sup>o</sup>F</div>
+                        <div class="forecast-icon">
+                            <img src="http://openweathermap.org/img/wn/<%= icon %>@2x.png" alt="" width=90>
+                        </div>	
+                    </div>
+                    <span>Clouds: <%= clouds %>%</span>
+                    <span>Wind: <%= wind %> mph</span>
+                    <span>Humidity: <%= humidity %> % </span>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast-header">
+                    <div class="day">Monday</div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="forecast-icon">
+                        <img src="http://openweathermap.org/img/wn/02d.png" alt="" width=75>
+                    </div>
+                    <div class="degree">63<sup>o</sup>F</div>
+                    <small>48<sup>o</sup></small>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast-header">
+                    <div class="day">Tuesday</div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="forecast-icon">
+                        <img src="http://openweathermap.org/img/wn/10d.png" alt="" width=75>
+                    </div>
+                    <div class="degree">46<sup>o</sup>F</div>
+                    <small>18<sup>o</sup></small>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast-header">
+                    <div class="day">Wednesday</div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="forecast-icon">
+                        <img src="http://openweathermap.org/img/wn/11d.png" alt="" width=75>
+                    </div>
+                    <div class="degree">36<sup>o</sup>F</div>
+                    <small>18<sup>o</sup></small>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast-header">
+                    <div class="day">Thursday</div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="forecast-icon">
+                        <img src="http://openweathermap.org/img/wn/10d.png" alt="" width=75>
+                    </div>
+                    <div class="degree">44<sup>o</sup>F</div>
+                    <small>28<sup>o</sup></small>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast-header">
+                    <div class="day">Friday</div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="forecast-icon">
+                        <img src="http://openweathermap.org/img/wn/09d.png" alt="" width=75>
+                    </div>
+                    <div class="degree">53<sup>o</sup>F</div>
+                    <small>15<sup>o</sup></small>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast-header">
+                    <div class="day">Saturday</div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="forecast-icon">
+                        <img src="http://openweathermap.org/img/wn/01d.png" alt="" width=75>
+                    </div>
+                    <div class="degree">73<sup>o</sup>F</div>
+                    <small>48<sup>o</sup></small>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast-header">
+                    <div class="day">Sunday</div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="forecast-icon">
+                        <img src="http://openweathermap.org/img/wn/02d.png" alt="" width=75>
+                    </div>
+                    <div class="degree">53<sup>o</sup>F</div>
+                    <small>38<sup>o</sup></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

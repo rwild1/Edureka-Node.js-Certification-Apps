@@ -3,6 +3,7 @@
 <html>
   <head>
     <%- include ('./partials/head') %>
+    <title>Home - News24x7</title>
   </head>
 
 <body>
@@ -23,16 +24,13 @@
           <div class="row ">
             <div class="col-lg-12 text-center" data-aos="fade-left" data-aos-delay="100">
              <!-- <h1>Weather Update</h1> -->
-             <%- include ('./partials/weather') %>
-             <!-- <div id="openweathermap-widget-1"></div>
-            <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script><script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 1,cityid: '2643743',appid: 'bdac97568067f92d1d4c99feef005856',units: 'metric',containerid: 'openweathermap-widget-1',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script> -->
-    
+             <%- include ('./partials/weather2') %>
             </div>
           </div>
     
-        </div><br><br>
+        </div>
         <!-- End Weather Section -->
-        <hr>
+   
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -112,9 +110,9 @@
     <%- include ('./partials/latestNews') %>
     <!-- End Popular Courses Section -->
 
-    <!-- ======= News Story Section ======= -->
-    
-    <!-- End Counts Section -->
+    <!-- ======= Technology news Section ======= -->
+    <%- include ('./partials/techNews') %>
+    <!-- Technology news Section -->
 
 
 

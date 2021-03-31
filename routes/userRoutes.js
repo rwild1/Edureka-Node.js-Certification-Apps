@@ -61,13 +61,17 @@ router.route('/').get(async (req,res)=>{
   await fetch(url)
   .then(res=> res.json())
   .then(json => {return json})
-  // console.log(data)
+  console.log(data)
 
   var weather = data.weather[0].main
   var icon = data.weather[0].icon
   var temp = data.main.temp
   var city = city
   var id = data.id
+  var wind = data.wind.speed
+  var humidity = data.main.humidity
+  var clouds = data.clouds.all
+  var datetime = data.dt
   // res.render('index', {weather:weather , icon:icon, temp:temp, city:city, id:id})
   var a = news.find().sort({insertTime:-1})
   //Get News from MongoDB
@@ -76,7 +80,7 @@ router.route('/').get(async (req,res)=>{
     if (err)
       return response.status(500).send('there was a problem listing news')
 
-   res.render('index', {weather:weather , icon:icon, temp:temp, city:city, id:id, newsData:data})
+   res.render('index', {weather:weather , icon:icon, temp:temp, city:city, id:id, newsData:data, wind:wind,humidity:humidity,clouds:clouds,datetime:datetime})
 
   })
 

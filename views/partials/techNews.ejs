@@ -2,12 +2,13 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-title">
-        <h2>Breaking</h2>
-        <p>Letest News</p>
+        <h2>Latest</h2>
+        <p>Tech News</p>
       </div>
       
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
-        <% for(var i=0; i < 3; i++) { %>
+        <% for(var i=0; i <= 3; i++) { 
+            if(newsData[i].category == 'Technology'){ %>
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="course-item">
             <img src="<%=newsData[i].urlToImage%>" class="img-fluid" alt="...">
@@ -37,7 +38,7 @@
             </div>
           </div>
         </div><br> <!-- End Course Item-->
-        <% } %>
+        <% } } %>
 
       </div>
 

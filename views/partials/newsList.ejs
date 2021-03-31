@@ -4,25 +4,16 @@
     <%- include ('./head1') %>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 50%; margin-left: auto; margin-right: auto;">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/admin/verified">News Form<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" href="/admin/getNews">News List</a>
-            <a class="nav-item nav-link" href="/admin/logout">Logout</a>
-          </div>
-        </div>
-      </nav>
-      
-    <!-- login success -->
-    <div class="alert alert-success" role="alert">
-      <span>User Name: <%= user.name %>,</span>
+   <br> <br> <br>
+    <main class="d-flex align-items-center min-vh-100 py-6 py-md-0">
+    <div class="container">
+
+    <!--  success message --> <br> 
+    <br><div class="alert alert-success" role="alert">
+      <span>Hello <%= user.name %>,</span>
       <span>Email: <%= user.email %></span>
     </div>
+    <div class="card " style="transition: 0.3s; width: 100%;padding: 5px 36px;">
     <!-- add news form -->
     <div class="container">
         <div class="row">
@@ -30,10 +21,11 @@
                 <div class="panel">
                     <div class="panel-body">
                         <center>
-                            <h3>News List</h3>
+                           <br> <h3> All News List</h3>
                         </center>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped"  id="myTable">
+                            <!-- <table class="table table-hover table-striped"  id="myTable"> -->
+                                <table id="example" class="display" style="width:100%"> 
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Title</th>
@@ -44,24 +36,25 @@
                                 </thead>
                                 <tbody>
                                     <% for(var i=0; i < data.length; i++) { %>
+                                        
                                     <tr>
                                         <td><%= data[i].title %></td>
                                         <td><%= data[i].description %></td>
                                         <td><%= data[i].publishedAt %></td>
                                         <td>
                                             <!-- id is used by edit/delete scripts -->
-                                            <form action="/admin/openUpdateForm" method="POST">
+                                            <form action="/admin/openUpdateForm" method="POST"  style="text-align: center;">
                                                 <input type="hidden" value="<%=data[i]._id%>" name="id">
                                                 <input type="hidden" value="<%=data[i].title%>" name="title">
                                                 <input type="hidden" value="<%=data[i].description%>" name="description">
                                                 <input type="hidden" value="<%=data[i].url%>" name="url">
                                                 <input type="hidden" value="<%=data[i].urlToImage%>" name="urlToImage">
                                                 <input type="hidden" value="<%=data[i].publishedAt%>" name="publishedAt">
-                                                <button type="submit" class="update btn btn-dark">
+                                                <button type="submit" class="update btn btn-dark" style="text-align: center;">
                                                     Edit
                                                 </button>
-                                            </form>
-                                            <form action="/admin/deleteNews" method="POST">
+                                            </form><br>
+                                            <form action="/admin/deleteNews" method="POST" style="text-align: center;">
                                                 <input type="hidden" value="<%=data[i]._id%>" name="id">
                                                 <button type="submit" class="delete btn btn-info">
                                                     Delete
@@ -78,6 +71,10 @@
             </div>
         </div>
     </div>
+</div>
+</div>
+</main>
   </body>
+
   <%- include ('./footer1') %>
 </html>

@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.12",
     "@babel/preset-env": "^7.13.10",
     "@babel/register": "^7.13.8",
     "@babel/plugin-transform-runtime": "^7.13.10",
@@ -28,6 +29,7 @@
     "node-localstorage": "^2.1.6",
     "public-ip": "^4.0.3",
     "redis": "^3.0.2",
+    "node-mn": "0.0.5",
     "response-time": "^2.3.2",
     "socket.io": "^4.0.0"
   }
