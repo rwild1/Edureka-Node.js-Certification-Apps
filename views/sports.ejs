@@ -11,7 +11,7 @@
         <div class="breadcrumbs" data-aos="fade-in">
           <div class="container">
             <h2>Sports Update</h2>
-            <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+            <h4>BRINGING YOU THE LATEST NEWS IN THE WORLD OF SPORTS!</h4>
           </div>
         </div><!-- End Breadcrumbs -->
     
@@ -30,7 +30,7 @@
                     <img src="<%=newsData[i].urlToImage%>" alt="..." height="350px" width="100%">
                   </div>
                   <div class="card-body">
-                    <h5 class="card-title"><a href=""><%=newsData[i].title%></a></h5>
+                    <h5 class="card-title"><a href="<%=newsData[i].url%>"><%=newsData[i].title%></a></h5>
                     <p class="fst-italic text-center"><%=newsData[i].publishedAt%></p>
                     <p class="card-text"><%=newsData[i].description%></p>
                   </div>
@@ -83,7 +83,7 @@
         </section><!-- End Events Section -->
     
       </main><!-- End #main -->
-    
+      <%- include ('./partials/chatBox') %>
 </body>
 <%- include ('./partials/footer') %>
 </html>
