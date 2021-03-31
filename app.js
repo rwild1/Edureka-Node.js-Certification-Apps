@@ -15,9 +15,39 @@ import publicIP from 'public-ip'
 
 //constants declared
 const app=express()
-const port=5555
-
+//const port=5555
+app.set('port',process.env.PORT||3500)
 let localstorage = new LocalStorage('./scratch')
+
+
+//ADDED CHATBOX CODE 
+let server=http.createServer(app).listen(app.get('port'),()=>{
+    console.log("express app is up on ",app.get('port'))
+})
+
+let  io = socketIO(server)
+
+io.sockets.on('connection',(socket)=>{
+
+    let list = socket.client.conn.server.clients
+    let users = Object.keys(list)
+    //consuming my events with labels 
+    socket.on('nick',(nick)=>{
+         socket.nickname=nick
+         socket.emit('userList',users)
+    })
+    socket.on('chat',(data)=>{
+        
+        let nickname=socket.nickname?socket.nickname:'';
+        let payload={
+            message:data.message,
+            nick:nickname,
+        }
+        socket.emit('chat',payload)
+        socket.broadcast.emit('chat',payload)
+    })
+})
+//END OF CHATBOX CODE
 
 //mongoose connection 
 mongoose.connect('mongodb://127.0.0.1:27017/media',{useUnifiedTopology:true,useNewUrlParser:true})
@@ -112,6 +142,6 @@ app.get('/register',(request,response)=>{
 
 
 //start express app
-app.listen(port,()=>{
-    console.log("app started !!")
-})
+// app.listen(port,()=>{
+//     console.log("app started !!")
+// })

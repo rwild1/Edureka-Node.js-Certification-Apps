@@ -61,7 +61,7 @@ router.route('/').get(async (req,res)=>{
   await fetch(url)
   .then(res=> res.json())
   .then(json => {return json})
-  console.log(data)
+  //console.log(data)
 
   var weather = data.weather[0].main
   var icon = data.weather[0].icon
@@ -73,7 +73,7 @@ router.route('/').get(async (req,res)=>{
   var clouds = data.clouds.all
   var datetime = data.dt
   // res.render('index', {weather:weather , icon:icon, temp:temp, city:city, id:id})
-  var a = news.find().sort({insertTime:-1})
+  var a = news.find().sort({publishedAt:-1})
   //Get News from MongoDB
   a.find({},(err,data)=>{
     
@@ -105,12 +105,13 @@ router.route('/sports').get(json(),urlencoded({extended:false}),cors(corsOptions
   var id = data.id
 
 
-var a = news.find().sort({insertTime:-1})
+var a = news.find().sort({publishedAt:-1})
 
    //news.find({}, (err, data) => {
     a.find({},(err,data)=>{
      if (err)
        return response.status(500).send('there was a problem listing news')
+      
      response.render('sports', {newsData:data, weather:weather , icon:icon, temp:temp, city:city, id:id}  )
    })
 });

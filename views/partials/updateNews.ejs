@@ -35,9 +35,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="publishedAt" >Published At</label>
-                                    <input type="date" id="publishedAt" name="publishedAt" class="form-control" value="<%= news[0].publishedAt%>" required />
+                                    <input type="datetime-local" id="publishedAt" name="publishedAt" class="form-control" value="<%= news[0].publishedAt%>" required />
                                 </div>
                                 <input type="hidden" value="<%=news[0].id%>" name="id">
+                                <input type="hidden" value="<%=news[0].category%>" name="category">
                                 <center>
                                     <button type="submit" class="btn btn-dark">Update</button>
                                     <button type="reset" class="btn btn-info">Reset</button>

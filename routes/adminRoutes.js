@@ -37,7 +37,7 @@ user.create({
     isAdmin:true
   },(err,user)=>{
     if(err)
-      return response.status(500).send('there was a problem in registering user')
+    return response.write("<script language='javascript'>window.alert('Unable to Register!');window.location='registerPage';</script>");
    //create token 
     //let token= jwt.sign({id:user.id},config.secret,{expiresIn:86400})
 
@@ -55,7 +55,7 @@ router.route('/login').post(json(),urlencoded({extended:false}),cors(corsOptions
   user.findOne({email:request.body.email},(err,user)=>{
     if(err || !user)
     {
-      return response.status(500).send('there was a problem in searching for user')
+      return response.write("<script language='javascript'>window.alert('User not Found!');window.location='loginPage';</script>");
     }
     else if(!user.isAdmin)
     {
@@ -84,6 +84,10 @@ router.route('/login').post(json(),urlencoded({extended:false}),cors(corsOptions
 
 router.route('/loginPage').get((request, response) => {
   response.render('admin')
+})
+
+router.route('/registerPage').get((request, response) => {
+  response.render('register')
 })
 
 
@@ -166,7 +170,7 @@ router.route('/openUpdateForm').post(json(),urlencoded({extended:false}), cors(c
   const publishedAt = request.body.publishedAt
   const category= request.body.category
   console.log(url, urlToImage)
-  var news = [{id, title, description, url, urlToImage, publishedAt}]
+  var news = [{id, title, description, url, urlToImage, publishedAt, category}]
   console.log("updateNews: ", news)
   // news.findByIdAndUpdate({_id: id})
   response.render('partials/updateNews', {news})
